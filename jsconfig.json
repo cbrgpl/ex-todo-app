@@ -5,9 +5,26 @@
     "baseUrl": "./",
     "moduleResolution": "node",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": [ "src/*" ],
+
+      "@icons/*": [ "src/assets/icons/*" ],
+      "@images/*": [ "src/assets/images/*" ],
+      "@scss/*": [ "src/assets/scss/*" ],
+
+      "@general_components/*": [ "src/components/general/*" ],
+      "@auth_components/*": [ "src/components/auth/*" ],
+      "@todo_components/*": [ "src/components/todo/*" ],
+
+      "@enums": [ "src/enums/*" ],
+      "@layouts": [ "src/layouts/*" ],
+
+      "@functions/*": [ "src/utils/functions/*" ],
+      "@mixins/*": [ "src/utils/mixins/*" ],
+      "@modules/*": [ "src/utils/modules/*" ],
+      "@services": [ "src/utils/services/*" ],
+      "@validators": [ "src/utils/validators/*" ],
+
+      "js_utils": [ "src/utils/js_utils/index.js" ]
     },
     "lib": [
       "esnext",

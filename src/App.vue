@@ -1,30 +1,17 @@
-<template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+<template >
+  <nav class="text-primary text-4xl" >
+    Almost before we knew it, we had left the ground.
   </nav>
-  <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script >
+
+export default {
+  name: 'TheApp',
 }
 
-nav {
-  padding: 30px;
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+<style lang="scss" >
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
