@@ -1,7 +1,7 @@
 <template >
-  <nav class="text-primary text-4xl" >
-    Almost before we knew it, we had left the ground.
-  </nav>
+  <div >
+    <router-view />
+  </div>
 </template>
 
 <script >

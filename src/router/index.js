@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
+
+import { testingRouteGuard } from './utils'
+
 import EmptyLayout from '@/layouts/EmptyLayout.vue'
 
 const routes = [
@@ -7,6 +10,12 @@ const routes = [
     name: 'root',
     component: EmptyLayout
   },
+  {
+    path: '/testing',
+    name: 'testing',
+    component:  () => import( '@/views/TheTestingPage.vue' ),
+    beforeEnter: testingRouteGuard
+  }
 ]
 
 const router = createRouter( {
