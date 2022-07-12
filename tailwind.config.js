@@ -3,7 +3,7 @@ const defaultTheme = require( 'tailwindcss/defaultTheme' )
 module.exports = {
   content: [ 
     './src/**/*.{html,js}',
-    './src/**/*.{vue,js,ts,jsx,tsx}'
+    './src/**/*.{vue,js,ts,jsx,tsx}',
   ],
   theme: {
     fontFamily: {
@@ -16,9 +16,15 @@ module.exports = {
         current: 'currentColor',
       
         black: {
+          lighten: '#242320',
           DEFAULT: '#1a1916',
         },
-        white: '#e4e4e4',
+        white: {
+          lighten: '#e6e6e6',
+          DEFAULT: '#e4e4e4',
+          darken: '#cdcdcd',
+          darkest: '#ababab'
+        },
         placeholder: '#b2b2b2',
       
         safety: {
@@ -30,6 +36,7 @@ module.exports = {
         },
       
         primary: {
+          darkest: '#8c1313',
           darken: '#c41d1e',
           DEFAULT: '#d12525',
           lighten: '#d32625',
