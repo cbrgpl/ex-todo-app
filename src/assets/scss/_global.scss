@@ -1,3 +1,7 @@
+*::selection {
+  @apply bg-primary-darken;
+}
+
 body {
   @apply bg-black-lighten text-white h-screen w-screen;
 }
