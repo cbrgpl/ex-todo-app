@@ -1,11 +1,12 @@
 <template >
   <ZFormField >
-    <template #input="{attrs, props}" >
+    <template #input="{attrs, state}" >
       <input
         v-bind="attrs"
-        :data-state="props.state"
-        class="field__input"
-        :type="attrs.type ? attrs.type : 'text'" >
+        :data-state="state"
+        class="form-field__input"
+        :type="attrs.type ? attrs.type : 'text'"
+        @input="$emit('update:modelValue', $event.target.value )" >
     </template>
   </ZFormField>  
 </template>
@@ -18,6 +19,7 @@ export default {
   components: {
     ZFormField
   },
+  emits: [ 'update:modelValue' ],
 }
 </script>
 

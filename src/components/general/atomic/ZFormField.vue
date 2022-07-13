@@ -1,21 +1,20 @@
 <template >
   <label
-    class="field"
-    v-bind="wrapperAttrs" 
-    :data-state="state" >
-    <h5 class="field__label" >
+    class="form-field"
+    v-bind="wrapperAttrs" >
+    <h5 class="form-field__label" >
       {{ label }}
     </h5>
 
     <slot
       name="input"
-      v-bind="{attrs, props: $props}" />
+      v-bind="{ attrs, state }" />
     
-    <div class="field__error-placement" >
-      <Transition name="field__error-label-transition" >
+    <div class="form-field__error-placement" >
+      <Transition name="form-field__error-label-transition" >
         <label
-          v-show="errorState"
-          class="field__error-label" >
+          v-show="state"
+          class="form-field__error-label" >
           {{ onError }}
         </label>
       </Transition>
@@ -31,9 +30,8 @@ export default {
   mixins: [ extenderMix ],
   props: {
     state: {
-      type: [ Boolean, null ],
-      default: null,
-      validator: ( val ) => [ true, null, false ].includes( val ) 
+      type: Boolean,
+      default: false
     },
     label: {
       type: String,
@@ -44,30 +42,25 @@ export default {
       default: ''
     }
   },
-  computed: {
-    errorState() {
-      return this.state === false
-    }
-  }
 }
 </script>
 
 <style lang="scss" scoped >
-@mixin field-pl {
+@mixin form-field-pl {
   @apply pl-2;
 }
 
-.field__label {
+.form-field__label {
   @apply font-semibold leading-tight;
 }
 
-::v-deep(.field__input) {
+::v-deep(.form-field__input) {
   @apply
     w-full
     bg-transparent text-white
     border-0 border-b border-primary-darkest;
 
-  @include field-pl;
+  @include form-field-pl;
 
   &:focus {
     @apply shadow-none ring-0 border-primary-lighten;
@@ -78,27 +71,23 @@ export default {
   }
 
   &[data-state='true'] {
-    @apply border-safety;
-  }
-
-  &[data-state='false'] {
     @apply border-danger;
   }
 }
 
-.field__error-placement {
+.form-field__error-placement {
   @apply relative h-9;
 }
 
-.field__error-label {
+.form-field__error-label {
   @apply
     text-danger text-sm break-all leading-none
     absolute top-1 left-0;
 
-  @include field-pl;
+  @include form-field-pl;
 }
 
-.field__error-label-transition {
+.form-field__error-label-transition {
   &-enter-from {
     @apply opacity-0 transform -translate-y-2;
   }
