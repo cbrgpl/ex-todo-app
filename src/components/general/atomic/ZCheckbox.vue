@@ -39,15 +39,14 @@ export default {
   mixins: [ extenderMix ],
   props: {
     state: {
-      type: [ Boolean, null ],
-      default: null,
-      validator: ( val ) => [ false, null, true ].includes( val )
+      type: Boolean ,
+      default: false,
     },
     label: {
       type: String,
       required: true,
     }
-  }  
+  },
 }
 </script>
 
@@ -82,7 +81,7 @@ export default {
   }
 }
 
-.checkbox[data-state='false'] {
+.checkbox[data-state='true'] {
   .checkbox__fake {
     @apply border-danger;
   }
