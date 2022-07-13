@@ -1,11 +1,5 @@
 <template >
   <div class="flex flex-col" >
-    <!-- <ZButtonWithLoader
-      ref="logOutButton"
-      @click="logOut" >
-      LogOut
-    </ZButtonWithLoader> -->
-
     <ZForm
       ref="form"
       :vuelidate="v$"
@@ -32,21 +26,11 @@
 import { useVuelidate } from '@vuelidate/core'
 import { required } from '@vuelidate/validators'
 
-
-import ZInput from '@general_components/composite/ZInput.vue'
-
-// import ZSingleCheckbox from '@general_components/composite/ZSingleCheckbox.vue'
-
-import ZForm from '@general_components/atomic/ZForm.vue'
-
 import { authService } from '@services/authService'
 
 export default {
   name: 'TheTestingPage',
   components: {
-    ZInput,
-    // ZSingleCheckbox,
-    ZForm
   },
   setup() {
     return {
