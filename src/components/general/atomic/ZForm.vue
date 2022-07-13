@@ -10,7 +10,9 @@
       <div class="form__actions" >
         <slot
           name="actions" >
-          <ZButtonWithLoader ref="button" >
+          <ZButtonWithLoader
+            ref="button"
+            type="submit" >
             {{ buttonText }}
           </ZButtonWithLoader>    
         </slot>
@@ -55,9 +57,10 @@ export default {
     reset() {
       this.$refs.form.reset()
       this.vuelidate.$reset()
+      this.$options.focusFeature.focusedNodeNumber = 0
     },
     setLoadingState( state ) {
-      this.button.setLoadingState( state )
+      this.$refs.button.setLoadingState( state )
     },
 
     // Private
@@ -66,24 +69,11 @@ export default {
       this.$options.focusFeature.nodeBuffer = [ ...nodes ]
     },
 
-    focusNextField() {
-      const focusedNodeNumber = this.$options.focusFeature.focusedNodeNumber
-      this.setFocusOn( focusedNodeNumber + 1 )
-    },
-    setFocusOn( number ) {
-      const isLastFieldPassed = number ===  this.$options.focusFeature.nodeBuffer.length
+    async emitSubmit() {
+      this.blurForm()
 
-      if( number < this.$options.focusFeature.nodeBuffer.length ) {
-        this.$options.focusFeature.nodeBuffer[ number ].focus()
-        this.$options.focusFeature.focusedNodeNumber = number
-      } else if ( isLastFieldPassed ) {
-        this.emitSubmit()
-      }
-    },
-
-    emitSubmit() {
-      this.vuelidate.$reset()
-      this.vuelidate.$touch()
+      await this.vuelidate.$reset()
+      await this.vuelidate.$touch()
     
       if( this.vuelidate.$error ) {
         return
@@ -91,6 +81,27 @@ export default {
       
       this.$emit( 'submitted' )
     },
+
+    blurForm() {
+      this.setFocusOn( 0 )
+      this.$options.focusFeature.nodeBuffer[ 0 ].blur()
+    },
+    focusNextField() {
+      const focusedNodeNumber = this.$options.focusFeature.focusedNodeNumber
+      this.setFocusOn( focusedNodeNumber + 1 )
+    },
+    setFocusOn( number ) {
+      const isLastFieldPassed = number ===  this.$options.focusFeature.nodeBuffer.length
+
+      if( !isLastFieldPassed ) {
+        this.$options.focusFeature.nodeBuffer[ number ].focus()
+        this.$options.focusFeature.focusedNodeNumber = number
+      } else {
+        this.emitSubmit()
+      }
+    },
+
+    
   },
 
 }

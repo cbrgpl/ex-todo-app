@@ -1,60 +1,51 @@
 <template >
   <div class="flex flex-col" >
+    <!-- <ZButtonWithLoader
+      ref="logOutButton"
+      @click="logOut" >
+      LogOut
+    </ZButtonWithLoader> -->
+
     <ZForm
       ref="form"
-      :vuelidate="v$" >
+      :vuelidate="v$"
+      @submitted="logIn" >
       <ZInput
-        v-model="form.name"
-        label="Name"
-        placeholder="Name"
-        :on-error="v$.form.name.$errors[0]?.$message"
-        :state="v$.form.name.$error" />
+        v-model="form.username"
+        label="Username"
+        placeholder="Enter username"
+        :on-error="v$.form.username.$errors[0]?.$message"
+        :state="v$.form.username.$error" />
 
       <ZInput
-        v-model="form.email"
-        label="Email"
-        placeholder="example@gmail.com"
-        :on-error="v$.form.email.$errors[0]?.$message"
-        :state="v$.form.email.$error" />
-
-      <ZInput
-        v-model="form.url"
-        label="Some url"
-        placeholder="https://url.com"
-        :on-error="v$.form.url.$errors[0]?.$message"
-        :state="v$.form.url.$error" />
-
-      <ZInput
-        v-model.number="form.age"
-        label="Age"
-        placeholder="Enter your age"
-        :on-error="v$.form.age.$errors[0]?.$message"
-        :state="v$.form.age.$error" />
-
-      <ZSingleCheckbox
-        v-model="form.rememberMe"
-        :state="v$.form.rememberMe.$error"
-        label="Remember me" />
+        v-model="form.password"
+        label="Password"
+        placeholder="***"
+        type="password"
+        :on-error="v$.form.password.$errors[0]?.$message"
+        :state="v$.form.password.$error" />
     </ZForm> 
   </div>
 </template>
 
 <script >
 import { useVuelidate } from '@vuelidate/core'
-import { minLength, required, email, url, between, integer } from '@vuelidate/validators'
+import { required } from '@vuelidate/validators'
 
 
 import ZInput from '@general_components/composite/ZInput.vue'
 
-import ZSingleCheckbox from '@general_components/composite/ZSingleCheckbox.vue'
+// import ZSingleCheckbox from '@general_components/composite/ZSingleCheckbox.vue'
 
 import ZForm from '@general_components/atomic/ZForm.vue'
+
+import { authService } from '@services/authService'
 
 export default {
   name: 'TheTestingPage',
   components: {
     ZInput,
-    ZSingleCheckbox,
+    // ZSingleCheckbox,
     ZForm
   },
   setup() {
@@ -67,47 +58,37 @@ export default {
       inputError: true,
       singleCheckbox: true,
       form: {
-        name: '',
-        email: '',
-        url: '',
-        age: '',
-        rememberMe: false
+        username: '',
+        password: ''
       }
     }
   },
   validations() {
     return {
       form: {
-        name: {
+        username: {
           required,
-          minLength: minLength( 4 )
         },
-        email: {
+        password: {
           required,
-          email,
         },
-        url: {
-          url,
-        },
-        age: {
-          required,
-          integer,
-          between: between( 18, 99 )
-        },
-        rememberMe: {
-          shouldBeTruly: ( val ) => !!val
-        }
+        // rememberMe: {
+        // shouldBeTruly: ( val ) => !!val
+        // }
       }
     }
   },
   methods: {
-    test() {
-      console.log( 'test' )
-      this.$refs.buttonWithLoader.setLoadingState( true )
-      setTimeout( () => {
-        this.$refs.buttonWithLoader.setLoadingState( false )
-      }, 2000 )
-    },
+    async logIn() {
+      this.$refs.form.setLoadingState( true )
+      const form = Object.assign( {}, this.form )
+
+      const authResponse = await authService.logIn( form )
+      
+      console.log( await authResponse.json() )
+      this.$refs.form.setLoadingState( false )
+    
+    }
   }
 }
 </script>
