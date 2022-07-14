@@ -25,7 +25,7 @@
     </div>
     
     <h5 class="checkbox__label" >
-      {{ label }}
+      <slot />
     </h5>
 
   </label>
@@ -42,10 +42,6 @@ export default {
       type: Boolean ,
       default: false,
     },
-    label: {
-      type: String,
-      required: true,
-    }
   },
 }
 </script>

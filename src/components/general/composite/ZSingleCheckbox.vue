@@ -1,7 +1,9 @@
 <template >
   <ZCheckbox
     :checked="modelValue"
-    @input="emitUpdateModelValue" />
+    @input="emitUpdateModelValue" >
+    <slot />
+  </ZCheckbox>
 </template>
 
 <script >
