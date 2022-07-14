@@ -1,5 +1,7 @@
 import { arrayUtils } from 'js_utils'
 
+import { formatUsers } from './../_utils/user.formatUser.js'
+
 export default {
   namespaced: true,
   state: {
@@ -17,12 +19,15 @@ export default {
     }
   },
   actions: {
-    composeUsers( { commit, rootGetters } ) {
+    composeUsers( { commit, rootGetters }  ) {
       const todos = rootGetters[ 'todo/todos' ]
 
-      const users = arrayUtils.group( todos, ( todo ) => todo.userId )
+      const users = arrayUtils.group( todos, ( todo ) => todo.userId )      
+      const formattedUsers = formatUsers( users ) 
 
-      commit( 'setUsers', users )
+      formattedUsers.sort( ( a, b ) => b.completed - a.completed || a.id - b.id )
+
+      commit( 'setUsers', formattedUsers )
     }
   }
 }
