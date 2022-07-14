@@ -38,7 +38,7 @@ export default {
     },
   },
   emits: [ 'viewInited' ],
-  expose: [ 'setLoaderState', 'emitInitEvent' ],
+  expose: [ 'setLoadingState', 'emitInitEvent' ],
   data() {
     return {
       loader: true
@@ -49,7 +49,7 @@ export default {
   },
   methods: {
     // Public
-    setLoaderState( state ) {
+    setLoadingState( state ) {
       this.loader = state
     },
     emitInitEvent() {

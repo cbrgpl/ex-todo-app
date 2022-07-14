@@ -1,6 +1,6 @@
 <template >
   <div >
-    <router-view />
+    <router-view @viewInited="disableTemplatePreloader" />
   </div>
 </template>
 
@@ -25,7 +25,10 @@ export default {
   methods: {
     ...mapActions( {
       logErrors: 'error/logErrors'
-    } )
+    } ),
+    disableTemplatePreloader() {
+      console.log( 'disables template preloader' )
+    }
   }
 }
 
