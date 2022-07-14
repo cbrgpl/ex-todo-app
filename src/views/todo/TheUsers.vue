@@ -5,9 +5,11 @@
     @VnodeMounted="initUsersEmptyWatcher" >
     Todo list
 
-    <pre >
-      {{ users }}
-    </pre>
+
+    <ZTodoCard
+      v-for="user of users"
+      :key="user.id"
+      v-bind="user" />
   </ZView>
 </template>
 
@@ -15,10 +17,13 @@
 import { defineAsyncComponent } from 'vue'
 import { mapGetters } from 'vuex'
 
+import ZTodoCard from '@/components/todo/composite/ZTodoCard/ZTodoCard.vue'
+
 export default {
   name: 'TheUsers',
   components: {
     ZView: defineAsyncComponent( () => import( '@general_components/composite/ZView/ZView.vue' ) ),
+    ZTodoCard
   },
   computed: {
     ...mapGetters( {
