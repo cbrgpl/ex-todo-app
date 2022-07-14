@@ -35,7 +35,7 @@ export default {
     headerTitle: {
       type: String ,
       default: ''
-    }
+    },
   },
   emits: [ 'viewInited' ],
   expose: [ 'setLoaderState', 'emitInitEvent' ],

@@ -27,9 +27,11 @@ class AuthService {
   logIn( { username, password } ) {
     if( username === SECURITY.USERNAME && password === SECURITY.PASSWORD ) {
       return wrapInFakeResponse( 200, { token: SECURITY.TOKEN } )
+    } else if( username === 'CRASH' ) {
+      return wrapInFakeResponse( 500 )
     } else {
       return wrapInFakeResponse( 400, { errors: [ { message: 'The transmitted data is incorrect' } ] } )
-    }
+    } 
   }
 
   logOut() {

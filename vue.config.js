@@ -33,6 +33,7 @@ module.exports = defineConfig( {
         '@enums': path.resolve( __dirname, 'src', 'enums' ),
         '@layouts': path.resolve( __dirname, 'src', 'layouts' ),
 
+        '@errors': path.resolve( __dirname, 'src', 'utils', 'errors' ),
         '@functions': path.resolve( __dirname, 'src', 'utils', 'functions' ),
         '@mixins': path.resolve( __dirname, 'src', 'utils', 'mixins' ),
         '@modules': path.resolve( __dirname, 'src', 'utils', 'modules' ),

@@ -11,6 +11,21 @@ const routes = [
     component: EmptyLayout
   },
   {
+    path: '/auth',
+    component: EmptyLayout,
+    children: [
+      {
+        path: '',
+        component: () => import ( '@/views/auth/TheAuth.vue' )
+      }
+    ]
+  },
+  {
+    path: '/error-page',
+    name: 'errorPage',
+    component: EmptyLayout,
+  },
+  {
     path: '/testing',
     name: 'testing',
     component:  () => import( '@/views/TheTestingPage.vue' ),

@@ -8,6 +8,16 @@
       <slot />
 
       <div class="form__actions" >
+        <div class="mb-2" >
+          <Transition name="form__error-transition" >
+            <h5
+              v-show="stateIsError"
+              class="form__error-label" >
+              {{ errorLabel }}
+            </h5>
+          </Transition>
+        </div>
+
         <slot
           name="actions" >
           <ZButtonWithLoader
@@ -23,6 +33,7 @@
 
 <script >
 import { defineAsyncComponent } from 'vue'
+import { exposes } from './index.js'
 
 export default {
   name: 'ZForm',
@@ -30,7 +41,7 @@ export default {
     nodeBuffer: [],
     focusedNodeNumber: 0,
   },
-  expose: [ 'focus', 'reset', 'setLoadingState' ],
+  expose: exposes,
   components: {
     ZButtonWithLoader: defineAsyncComponent( () => import( '@general_components/composite/ZButtonWithLoader.vue' ) )
   },
@@ -42,9 +53,19 @@ export default {
     buttonText: {
       type: String,
       default: 'Submit'
-    }
+    },
   },
   emits: [ 'submitted' ],
+  data() {
+    return {
+      errorLabel: ''
+    }
+  },
+  computed: {
+    stateIsError() {
+      return this.errorLabel !== ''
+    }
+  },
   mounted() {
     this.bufferInputs()
     this.focus()
@@ -61,6 +82,12 @@ export default {
     },
     setLoadingState( state ) {
       this.$refs.button.setLoadingState( state )
+    },
+    setError( errorLabel ) {
+      this.errorLabel = errorLabel
+    },
+    clearError() {
+      this.errorLabel = ''
     },
 
     // Private
@@ -111,6 +138,22 @@ export default {
 .form {
   &__actions {
     @apply mt-8;
+  }
+
+  &__error-label {
+    @apply
+      text-danger font-semibold
+      line-clamp-2 break-all;
+  }
+}
+
+.form__error-transition {
+  &-enter-from {
+    @apply opacity-0 transform -translate-y-2;
+  }
+
+  &-enter-active {
+    @apply transition-all duration-150 ease-out;
   }
 }
 </style>
