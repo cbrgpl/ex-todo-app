@@ -38,7 +38,7 @@ export default {
       $form.setLoadingState( true )
 
       const actionResult = await this.$store.dispatch( 'auth/logIn', logInData )
-      console.log( actionResult )
+
       if( actionResult.error === null ) {
         return
       } else if( !actionResult.error ) {
