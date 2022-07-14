@@ -4,9 +4,12 @@
     title="Authentification"
     header-title="Authentification"
     @VnodeMounted="onViewMounted" >
-    <ZLogInForm
-      ref="form"
-      @submitted="logIn" />
+    <div class="w-full h-full flex items-center justify-center" >
+      <ZLogInForm
+        ref="form"
+        class="w-full max-w-lg m-auto"
+        @submitted="logIn" />
+    </div>
   </ZView> 
 </template>
 

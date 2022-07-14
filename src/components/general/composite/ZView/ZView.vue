@@ -71,6 +71,7 @@ export default {
 <style lang="scss" scoped >
 .view {
   @apply
+    flex flex-col
     overflow-y-auto
     h-screen
     p-2 lg:p-4 2xl:p-8;
