@@ -74,7 +74,7 @@ export default {
     emitSubmitted() {
       const clone = Object.assign( {}, this.form )
 
-      this.$emit( 'submitted', clone )
+      this.$emit( 'submitted', { logInData: clone, rememberMe: this.rememberMe } )
     }
   },
 }
