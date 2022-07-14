@@ -81,7 +81,8 @@ export default {
 
   &__header {
     @apply
-      flex justify-center md:justify-between items-center pt-16;
+      absolute top-6 right-2/4 transform translate-x-2/4
+      md:left-4 md:translate-x-0 md:justify-start md:pt-0;
   }
 
   &__title {
