@@ -84,7 +84,8 @@ export default {
   &__title {
     @apply
       leading-none
-      lg:text-2xl 2xl:text-3xl;
+      font-semibold underline underline-offset-2
+      text-xl lg:text-2xl 2xl:text-3xl;
   }
 
   &__loader-wrapper {
