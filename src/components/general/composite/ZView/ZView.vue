@@ -1,6 +1,8 @@
 <template >
   <section class="view" >
-    <div class="view__header" >
+    <div
+      v-show="title"
+      class="view__header" >
       <div class="view__title" >
         {{ title }}
       </div>
@@ -9,7 +11,9 @@
       <slot name="header" />
     </div>
 
-    <slot />
+    <div class="flex-grow" >
+      <slot />
+    </div>
 
     <div
       v-if="loader"
@@ -72,21 +76,19 @@ export default {
 .view {
   @apply
     flex flex-col
-    overflow-y-auto
-    h-screen
-    p-2 lg:p-4 2xl:p-8;
+    container mx-auto
+    p-3 sm:p-6 md:py-8 lg:py-10;
 
   &__header {
     @apply
-      flex justify-between items-center
-      mb-4;
+      flex justify-center md:justify-between items-center pt-16;
   }
 
   &__title {
     @apply
       leading-none
       font-semibold underline underline-offset-2
-      text-xl lg:text-2xl 2xl:text-3xl;
+      text-2xl lg:text-3xl 2xl:text-4xl;
   }
 
   &__loader-wrapper {
