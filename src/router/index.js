@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 
 import { testingRouteGuard } from './utils'
 
-import EmptyLayout from '@/layouts/EmptyLayout.vue'
+import EmptyLayout from '@/layouts/EmptyLayout/EmptyLayout.vue'
 
 const routes = [
   {
@@ -16,8 +16,20 @@ const routes = [
     children: [
       {
         path: '',
+        name: 'auth',
         component: () => import ( '@/views/auth/TheAuth.vue' )
       }
+    ]
+  },
+  {
+    path: '/todo',
+    component: () => import( '@layouts/TodoLayout/TodoLayout.vue' ),
+    children: [
+      {
+        path: '',
+        name: 'todo',
+        component: () => import( '@/views/todo/TheUsers.vue' )
+      },
     ]
   },
   {

@@ -8,6 +8,7 @@ import remove from './utils/array.remove'
 import equals from './utils/array.equals'
 import unique from './utils/array.unique'
 import exclude from './utils/array.exclude'
+import group from './utils/array.group'
 // Object
 import isIterable from './utils/object.isIterable'
 
@@ -24,7 +25,8 @@ const extendModule = {
     remove,
     equals,
     unique,
-    exclude
+    exclude,
+    group
   },
   object: {
     isIterable,

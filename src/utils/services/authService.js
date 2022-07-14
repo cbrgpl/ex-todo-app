@@ -22,8 +22,6 @@ const wrapInFakeResponse = ( status, data  ) => {
 }
 
 class AuthService {
-
-
   logIn( { username, password } ) {
     if( username === SECURITY.USERNAME && password === SECURITY.PASSWORD ) {
       return wrapInFakeResponse( 200, { token: SECURITY.TOKEN } )

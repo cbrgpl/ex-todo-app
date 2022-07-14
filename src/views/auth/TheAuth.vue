@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     onViewMounted() {
-      this.$refs.view.setLoaderState( false )
+      this.$refs.view.setLoadingState( false )
       this.$refs.view.emitInitEvent()  
     },
 
