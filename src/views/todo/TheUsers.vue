@@ -1,8 +1,17 @@
 <template >
   <ZView
     ref="view"
-    header-title="Todo List"
-    @VnodeMounted="initUsersEmptyWatcher" >
+    header-title="Todo User List"
+    @VnodeMounted="emitViewInited" >
+    <div class="mb-4 border-b border-placeholder border-opacity-20 pb-4" >
+      <ZButtonWithLoader
+        ref="button"
+        class="w-full sm:max-w-xs ml-auto"
+        @click="uploadUsers" >
+        Upload
+      </ZButtonWithLoader>
+    </div>
+
     <div class="grid grid-cols-1 gap-y-3 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 lg:gap-x-6 2xl:grid-cols-4 2xl:gap-x-10" >
       <ZTodoCard
         v-for="user of users"
@@ -22,25 +31,26 @@ export default {
   name: 'TheUsers',
   components: {
     ZView: defineAsyncComponent( () => import( '@general_components/composite/ZView/ZView.vue' ) ),
+    ZButtonWithLoader: defineAsyncComponent( () => import( '@general_components/composite/ZButtonWithLoader.vue' ) ),
     ZTodoCard
   },
   computed: {
     ...mapGetters( {
-      todosLoaded: 'todo/todosLoaded',
       users: 'user/users'
     } )
   },
   methods: {
-    initUsersEmptyWatcher() {
-      this.$watch(
-        () => this.todosLoaded,
-        () => {
-          this.emitViewInited()
-        },
-        {
-          immediate: true,
-        }
-      )
+    uploadUsers() {
+      this.$refs.button.setLoadingState( true )
+
+      // ТЗ Специально добавляю задержку
+      setTimeout( async () => {
+
+        await this.$store.dispatch( 'todo/requestTodos' )
+        this.$store.dispatch( 'user/composeUsers' )
+      
+        this.$refs.button.setLoadingState( false )
+      }, 650 + Math.random() * 800 )
     },
     emitViewInited() {
       this.$refs.view.setLoadingState( false )
