@@ -61,15 +61,15 @@ export default {
     @apply
       flex items-center justify-center flex-shrink-0
       border border-solid border-primary
-      w-4 h-4
-      mr-1.5;
+      w-5 h-5
+      mr-2.5;
   }
 
   &__check {
     @apply
       w-full h-full
       text-primary
-      transition-all duration-100 ease-in-out;
+      transition-all duration-100 ease-out;
   }
 
   &__label {
