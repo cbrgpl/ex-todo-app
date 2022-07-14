@@ -5,12 +5,14 @@ import {
 
 import { authService } from '@services/authService'
 
+import { STORAGE_VARS } from 'consts'
+
 import { NetworkError } from '@/utils/errors/NetworkError.js'
 
 export default {
   namespaced: true,
   state: {
-    token: null,
+    token: sessionStorage.getItem( STORAGE_VARS.TOKEN ) || localStorage.getItem( STORAGE_VARS.TOKEN ),
   },
   getters: {
     token: ( state ) => state.token,
@@ -30,6 +32,8 @@ export default {
         
       if( logInResponse.status === 200 ) {
         commit( 'setToken', responseBody.token )
+
+
         return getActionResult( false, responseBody )
       } else if( logInResponse.status === 400 ) {
         return getActionResult( true, responseBody )

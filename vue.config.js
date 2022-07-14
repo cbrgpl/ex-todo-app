@@ -41,6 +41,7 @@ module.exports = defineConfig( {
         '@validators': path.resolve( __dirname, 'src', 'utils', 'validators' ),
 
         'js_utils': path.resolve( __dirname, 'src', 'utils', 'js_utils' ),
+        'consts': path.resolve( __dirname, 'src', 'enums', 'consts.js' )
       }
     }
   }

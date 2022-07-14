@@ -17,6 +17,7 @@
 import { defineAsyncComponent } from 'vue'
 import ZLogInForm from '@/components/auth/composite/ZLogInForm.vue'
 
+import { STORAGE_VARS } from 'consts'
 
 export default {
   name: 'TheAuth',
@@ -30,23 +31,31 @@ export default {
       this.$refs.view.emitInitEvent()  
     },
 
-    async logIn( logInData ) {
+    async logIn( { logInData, rememberMe } ) {
       const $form = this.$refs.form
 
       $form.clearError()
       $form.setLoadingState( true )
 
       const actionResult = await this.$store.dispatch( 'auth/logIn', logInData )
-
+      console.log( actionResult )
       if( actionResult.error === null ) {
         return
       } else if( !actionResult.error ) {
-        console.log( 'push to todo' )
+        this.setTokenToStorage( rememberMe,  actionResult.payload.token )
+        this.$router.push( { name: 'todo' } )
       } else {
         $form.setError( actionResult.payload.errors[ 0 ].message )
       }
 
       $form.setLoadingState( false )
+    },
+    setTokenToStorage( rememberMe, token ) {
+      if( rememberMe ) {
+        localStorage.setItem( STORAGE_VARS.TOKEN, token )
+      } else {
+        sessionStorage.setItem( STORAGE_VARS.TOKEN, token )
+      }
     }
   },
 }

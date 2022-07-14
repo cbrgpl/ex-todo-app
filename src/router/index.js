@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
-import { testingRouteGuard } from './utils'
+import { testingRouteGuard, authGuard } from './utils'
 
 import EmptyLayout from '@/layouts/EmptyLayout/EmptyLayout.vue'
 
@@ -13,6 +13,9 @@ const routes = [
   {
     path: '/auth',
     component: EmptyLayout,
+    meta: {
+      auth: false
+    },
     children: [
       {
         path: '',
@@ -24,6 +27,9 @@ const routes = [
   {
     path: '/todo',
     component: () => import( '@layouts/TodoLayout/TodoLayout.vue' ),
+    meta: {
+      auth: true,
+    },
     children: [
       {
         path: '',
@@ -49,5 +55,7 @@ const router = createRouter( {
   history: createWebHistory( process.env.BASE_URL ),
   routes
 } )
+
+router.beforeEach( authGuard )
 
 export default router
