@@ -64,11 +64,12 @@ export default {
   computed: {
     stateIsError() {
       return this.errorLabel !== ''
-    }
+    },
   },
   mounted() {
     this.bufferInputs()
     this.focus()
+    this.startListeningBubbleFocus()
   },
   methods: {
     // Public
@@ -94,6 +95,13 @@ export default {
     bufferInputs() {
       const nodes = this.$refs.form.querySelectorAll( '.form-field__input' )
       this.$options.focusFeature.nodeBuffer = [ ...nodes ]
+    },
+    startListeningBubbleFocus() {
+      this.$refs.form.addEventListener( 'bubbleFocus', ( event ) => {
+        const $focusedInput = event.target
+        const focusedInputIndex = this.$options.focusFeature.nodeBuffer.findIndex( ( node ) => node === $focusedInput )
+        this.$options.focusFeature.focusedNodeNumber = focusedInputIndex
+      } )
     },
 
     async emitSubmit() {
