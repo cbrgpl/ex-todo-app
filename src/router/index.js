@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'root',
-    component: EmptyLayout
+    redirect: { name: 'auth' }
   },
   {
     path: '/auth',

@@ -32,8 +32,6 @@ export default {
         
       if( logInResponse.status === 200 ) {
         commit( 'setToken', responseBody.token )
-
-
         return getActionResult( false, responseBody )
       } else if( logInResponse.status === 400 ) {
         return getActionResult( true, responseBody )
