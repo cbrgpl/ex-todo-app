@@ -1,6 +1,8 @@
 <template >
   <div >
-    <router-view @viewInited="disableTemplatePreloader" />
+    <router-view
+      class="h-screen w-screen"
+      @viewInited="disableTemplatePreloader" />
   </div>
 </template>
 

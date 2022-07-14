@@ -3,13 +3,12 @@
     ref="view"
     header-title="Todo List"
     @VnodeMounted="initUsersEmptyWatcher" >
-    Todo list
-
-
-    <ZTodoCard
-      v-for="user of users"
-      :key="user.id"
-      v-bind="user" />
+    <div class="grid grid-cols-1 gap-y-3 sm:grid-cols-2 sm:gap-x-4 lg:grid-cols-3 lg:gap-x-6 2xl:grid-cols-4 2xl:gap-x-10" >
+      <ZTodoCard
+        v-for="user of users"
+        :key="user.id"
+        v-bind="user" />
+    </div>
   </ZView>
 </template>
 
