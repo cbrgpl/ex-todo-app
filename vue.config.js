@@ -17,6 +17,7 @@ module.exports = defineConfig( {
   },
 
   configureWebpack: {
+  
     resolve: {
       alias: {
         '@': path.resolve( __dirname, 'src' ),
@@ -44,5 +45,15 @@ module.exports = defineConfig( {
         'consts': path.resolve( __dirname, 'src', 'enums', 'consts.js' )
       }
     }
+  },
+
+  chainWebpack: config => {
+    config
+      .plugin( 'html' )
+      .tap( args => {
+        args[ 0 ].title = 'Ex Todo Application'
+        return args
+      } )
   }
+
 } )

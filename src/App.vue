@@ -29,8 +29,15 @@ export default {
       logErrors: 'error/logErrors'
     } ),
     disableTemplatePreloader() {
-      console.log( 'disables template preloader' )
+      setTimeout( () => {
+        const $templatePreloader = document.querySelector( '#template-preloader' )
+        // Из-за hot-reload вылетает ошибка, которой не будет в обычной ситуации
+        if( $templatePreloader ) {
+          document.body.removeChild( $templatePreloader )
+        }
+      }, 0 )
     }
+     
   }
 }
 
