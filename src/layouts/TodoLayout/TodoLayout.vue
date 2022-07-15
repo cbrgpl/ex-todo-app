@@ -1,7 +1,7 @@
 <template >
   <div class="flex" >
     <PMobileSidebar class="lg:hidden" />
-    <PDesktopSidebar class="hidden lg:block" />
+    <PDesktopSidebar class="hidden lg:block flex-shrink-0" />
     
     <div class="flex-grow overflow-auto" >
       <router-view @viewInited="$emit('viewInited')" />
