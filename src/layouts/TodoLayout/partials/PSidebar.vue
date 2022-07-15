@@ -27,6 +27,7 @@
 
     <ul class="todo-sidebar__nav-list" >
       <li
+        :data-loading="loading"
         class="todo-sidebar__nav-item"
         @click="logOut" >
         LogOut
@@ -41,14 +42,26 @@ import { mainNavigation } from '@/enums/nav/todo.mainNavigation'
 export default {
   name: 'PSidebar',
   mainNavigation,
+  data() {
+    return {
+      loading: false,
+    }
+  },
   computed: {
     username() {
       return this.$store.getters[ 'auth/username' ]
     }
   },
   methods: {
-    logOut() {
-      
+    async logOut() {
+      this.loading = true
+      const actionResult = await this.$store.dispatch( 'auth/logOut' )
+
+      if( !actionResult.error ) {
+        this.$router.push( { name: 'auth' } )
+      }
+
+      this.loading = false
     }
   }
 }
@@ -110,6 +123,10 @@ export default {
 
     &_selected {
       @apply text-primary;
+    }
+
+    &[data-loading='true'] {
+      @apply pointer-events-none text-placeholder text-opacity-80;
     }
   }
 }
