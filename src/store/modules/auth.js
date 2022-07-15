@@ -13,9 +13,11 @@ export default {
   namespaced: true,
   state: {
     token: sessionStorage.getItem( STORAGE_VARS.TOKEN ) || localStorage.getItem( STORAGE_VARS.TOKEN ),
+    username: null,
   },
   getters: {
     token: ( state ) => state.token,
+    username: ( state ) => state.username, 
   },
   mutations: {
     setToken( state, token ) {
