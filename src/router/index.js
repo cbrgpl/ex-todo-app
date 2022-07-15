@@ -36,6 +36,11 @@ const routes = [
         name: 'todo',
         component: () => import( '@/views/todo/TheUsers.vue' )
       },
+      {
+        path: 'graph',
+        name: 'graph',
+        component: () => import( '@/views/todo/TheGraph.vue' )
+      }
     ]
   },
   {
