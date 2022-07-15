@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     uploadUsers() {
-      this.$refs.button.setLoadingState( true )
+      this.setButtonLoadingState( true )
 
       // ТЗ Специально добавляю задержку
       setTimeout( async () => {
@@ -49,8 +49,13 @@ export default {
         await this.$store.dispatch( 'todo/requestTodos' )
         this.$store.dispatch( 'user/composeUsers' )
       
-        this.$refs.button.setLoadingState( false )
+        this.setButtonLoadingState( false )
       }, 650 + Math.random() * 800 )
+    },
+    setButtonLoadingState( state ) {
+      if( this.$refs.button ) {
+        this.$refs.button.setLoadingState( state )
+      }
     },
     emitViewInited() {
       this.$refs.view.setLoadingState( false )
