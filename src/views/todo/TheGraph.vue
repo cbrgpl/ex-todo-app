@@ -1,13 +1,16 @@
 <template >
   <ZView
     ref="view"
-    class="flex flex-col max-h-screen overflow-hidden"
+    class="h-screen overflow-hidden"
     header-title="Todo Graph"
     @VnodeMounted="emitViewInited" >
-    <ZUserChart
-      ref="chart"
-      v-bind="chartParams"
-      @VnodeMounted="initChart" />  
+    <div class="w-full h-full flex items-center justify-center" >
+      <ZUserChart
+        ref="chart"
+        class="w-full max-w-5xl"
+        v-bind="chartParams"
+        @VnodeMounted="initChart" />  
+    </div>
   </ZView>
 </template>
 
