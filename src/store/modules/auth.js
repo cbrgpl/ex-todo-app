@@ -23,8 +23,12 @@ export default {
     setToken( state, token ) {
       state.token = token
     },
-    clearToken( state ) {
-      state.toekn = null
+    setUsername( state, username ) {
+      state.username = username
+    },
+    clear( state ) {
+      state.token = null
+      state.username = null
     }
   },
   actions: {
@@ -35,6 +39,7 @@ export default {
       // ТЗ Это скорее просто демонстрация того, как бы я делал
       if( logInResponse.status === 200 ) {
         commit( 'setToken', responseBody.token )
+        commit( 'setUsername', responseBody.username )
         return getActionResult( false, responseBody )
       } else if( logInResponse.status === 400 ) {
         return getActionResult( true, responseBody )
