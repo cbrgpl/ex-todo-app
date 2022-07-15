@@ -54,6 +54,10 @@ const routes = [
     component:  () => import( '@/views/TheTestingPage.vue' ),
     beforeEnter: testingRouteGuard
   },
+  {
+    path: '/:anySymbolSequence*',
+    redirect: { name: 'root' },
+  }
 ]
 
 const router = createRouter( {
