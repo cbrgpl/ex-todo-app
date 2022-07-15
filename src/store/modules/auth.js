@@ -30,6 +30,7 @@ export default {
       const logInResponse = await authService.logIn( logInData )
       const responseBody = await logInResponse.json()
         
+      // ТЗ Это скорее просто демонстрация того, как бы я делал
       if( logInResponse.status === 200 ) {
         commit( 'setToken', responseBody.token )
         return getActionResult( false, responseBody )
@@ -43,6 +44,7 @@ export default {
     async logOut( { commit } ) {
       const logOutResponse = await authService.logOut()
 
+      // ТЗ Это скорее просто демонстрация того, как бы я делал
       if( logOutResponse.status === 200 ) {
         commit( 'clearToken' )
         return getActionResult( false )
