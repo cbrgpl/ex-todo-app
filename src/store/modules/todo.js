@@ -26,6 +26,7 @@ export default {
       const todoResponse = await fetch( process.env.VUE_APP_TODO_URL )
       const responseBody = await todoResponse.json()
 
+      // ТЗ Это скорее просто демонстрация того, как бы я делал
       if( todoResponse.status === 200 ) {
         commit( 'setTodos', responseBody )
         return getActionResult( false )
@@ -33,7 +34,6 @@ export default {
         throwError( new NetworkError( todoResponse, responseBody ) )
         return getActionResult( null )
       }
-
     }
   }
 }

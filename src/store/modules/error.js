@@ -25,6 +25,7 @@ export default {
       pushToErrorPage()
     },
     logErrors( { getters } ) {
+      // ТЗ Тут уже можно сделать любого вида логирование, в том числе логов на внешнее АПИ
       console.group( `Error Log ${ ++logNumber }` )
       console.log( getters.errorInstances )
       console.groupEnd()
