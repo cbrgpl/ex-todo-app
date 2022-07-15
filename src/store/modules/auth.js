@@ -13,7 +13,7 @@ export default {
   namespaced: true,
   state: {
     token: sessionStorage.getItem( STORAGE_VARS.TOKEN ) || localStorage.getItem( STORAGE_VARS.TOKEN ),
-    username: null,
+    username: sessionStorage.getItem( STORAGE_VARS.USERNAME ) || localStorage.getItem( STORAGE_VARS.USERNAME ),
   },
   getters: {
     token: ( state ) => state.token,
@@ -27,7 +27,10 @@ export default {
       state.username = username
     },
     clear( state ) {
+      localStorage.removeItem( STORAGE_VARS.TOKEN )
       state.token = null
+
+      localStorage.removeItem( STORAGE_VARS.USERNAME )
       state.username = null
     }
   },
@@ -53,7 +56,7 @@ export default {
 
       // ТЗ Это скорее просто демонстрация того, как бы я делал
       if( logOutResponse.status === 200 ) {
-        commit( 'clearToken' )
+        commit( 'clear' )
         return getActionResult( false )
       } else {
         throwError( new NetworkError( logOutResponse ) )
