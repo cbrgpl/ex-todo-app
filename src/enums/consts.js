@@ -1,5 +1,6 @@
 const STORAGE_VARS = {
-  TOKEN: 'token'
+  TOKEN: 'token',
+  USERNAME: 'username',
 }
 
 export {

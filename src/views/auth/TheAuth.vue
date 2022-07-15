@@ -42,7 +42,7 @@ export default {
       if( actionResult.error === null ) {
         return
       } else if( !actionResult.error ) {
-        this.setTokenToStorage( rememberMe,  actionResult.payload.token )
+        this.setTokenToStorage( rememberMe,  actionResult.payload )
         this.$router.push( { name: 'todo' } )
       } else {
         $form.setError( actionResult.payload.errors[ 0 ].message )
@@ -50,11 +50,13 @@ export default {
 
       $form.setLoadingState( false )
     },
-    setTokenToStorage( rememberMe, token ) {
+    setTokenToStorage( rememberMe, { token, username } ) {
       if( rememberMe ) {
         localStorage.setItem( STORAGE_VARS.TOKEN, token )
+        localStorage.setItem( STORAGE_VARS.USERNAME, username )
       } else {
         sessionStorage.setItem( STORAGE_VARS.TOKEN, token )
+        sessionStorage.setItem( STORAGE_VARS.USERNAME, username )
       }
     }
   },

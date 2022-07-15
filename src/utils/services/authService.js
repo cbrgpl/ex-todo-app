@@ -1,5 +1,5 @@
 const SECURITY = {
-  USERNAME: 'username',
+  USERNAME: 'user1',
   PASSWORD: 'password',
   TOKEN: 'QFSKFODSPXFPP2P2P2PSDFPFSF--F-'
 }
@@ -24,7 +24,7 @@ const wrapInFakeResponse = ( status, data  ) => {
 class AuthService {
   logIn( { username, password } ) {
     if( username === SECURITY.USERNAME && password === SECURITY.PASSWORD ) {
-      return wrapInFakeResponse( 200, { token: SECURITY.TOKEN } )
+      return wrapInFakeResponse( 200, { token: SECURITY.TOKEN, username: SECURITY.USERNAME } )
     } else if( username === 'CRASH' ) {
       return wrapInFakeResponse( 500 )
     } else {
