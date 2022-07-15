@@ -2,8 +2,9 @@
   <div >
     <canvas
       ref="canvas"
-      width="1"
-      height="1" ></canvas>
+      class="chart__canvas"
+      width="0"
+      height="0" ></canvas>
   </div>
 </template>
 
@@ -43,5 +44,7 @@ export default {
 </script>
 
 <style lang="scss" scoped >
-
+.chart__canvas {
+  @apply w-full h-full #{!important};
+}
 </style>

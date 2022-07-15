@@ -53,7 +53,7 @@ const routes = [
     name: 'testing',
     component:  () => import( '@/views/TheTestingPage.vue' ),
     beforeEnter: testingRouteGuard
-  }
+  },
 ]
 
 const router = createRouter( {
