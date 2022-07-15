@@ -4,7 +4,7 @@ export const mainNavigation = [
     title: 'Cards',
   },
   {
-    routeName: 'auth',
+    routeName: 'graph',
     title: 'Graph',
   },
 ]

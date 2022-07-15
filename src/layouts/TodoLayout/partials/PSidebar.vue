@@ -15,7 +15,7 @@
           :key="option.routeName" >
           <router-link
             class="todo-sidebar__nav-item" 
-            :to="option.routeName"
+            :to="{ name: option.routeName }"
             exact-active-class="todo-sidebar__nav-item_selected" >
             {{ option.title }}
           </router-link>
