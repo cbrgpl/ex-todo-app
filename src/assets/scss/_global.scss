@@ -2,6 +2,19 @@
   @apply bg-primary-darken;
 }
 
+*::-webkit-scrollbar {
+  @apply w-1;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded-lg bg-white bg-opacity-80;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #e4e4e4;
+}
+
 body {
   @apply bg-black-lighten text-white h-screen w-screen;
 }
