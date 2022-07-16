@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkex_todo_app"]=self["webpackChunkex_todo_app"]||[]).push([[286],{8286:function(e,n,t){t.r(n),t.d(n,{default:function(){return d}});var r=t(3396);const a={class:"w-60"};function o(e,n,t,o,s,c){const u=(0,r.up)("PSidebar");return(0,r.wg)(),(0,r.iD)("div",a,[(0,r.Wm)(u)])}var s={name:"PDesktopSidebar",components:{PSidebar:(0,r.RC)((()=>t.e(715).then(t.bind(t,4715))))}},c=t(89);const u=(0,c.Z)(s,[["render",o]]);var d=u}}]);
+//# sourceMappingURL=286.e455dda4.js.map
